@@ -1,0 +1,33 @@
+<h2>Criar Postagem</h2>
+{{#if msgerro}}
+<div class="alert alert-danger">{{msgerro}}</div>
+{{/if}}
+{{#if msgok}}
+<div class="alert alert-success">{{msgok}}</div>
+{{/if}}
+
+<div class="card">
+    <div class="card-body">
+        <form action="/posts/novo" method="POST">
+            <input type="text" id="titulo" name="titulo" placeholder="Título do Post" class="form-control" required><br>
+            <input type="text" id="slug" name="slug" placeholder="Slug do Post" class="form-control" required><br>
+            <input type="text" id="descricao" name="descricao" placeholder="Descrição do Post" class="form-control"
+                required><br>
+            <select id="categoria" name="categoria" class="form-control" required>
+                <option value="" disabled selected>Categoria do Post</option>
+                {{#each tudo as |campo|}}
+                {{#each campo}}
+                {{#if nome}}
+                    <option class="item" value="{{_id}}">{{nome}}</option>
+                {{/if}}
+                {{/each}}
+                {{/each}}
+            </select>
+            <br>
+            <textarea id="conteudo" name="conteudo" rows="5" placeholder="Conteúdo" class="form-control"
+                required></textarea><br>
+            <br>
+            <button class="btn btn-success" type="submit">Criar</button><br>
+        </form>
+    </div>
+</div>

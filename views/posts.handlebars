@@ -1,0 +1,39 @@
+<h2>Posts:</h2>
+{{#if msgerro}}
+<div class="alert alert-danger">{{msgerro}}</div>
+{{/if}}
+{{#if msgok}}
+<div class="alert alert-success">{{msgok}}</div>
+{{/if}}
+<hr>
+<a href="/posts/add"><button class="btn btn-success">Novo Posts</button></a>
+<br>
+{{#each tudo as |campo|}}
+{{#each campo}}
+{{#if titulo}}
+<div class="card mt-4">
+    <div class="card-body">
+        <h3>{{titulo}}</h3>        
+        <p><span>Descricao: </span>{{descricao}}</p>
+        <small><span>Slug: </span>{{slug}}</small><br>
+        <small><span>Conteúdo: </span>{{conteudo}}</small><br>
+        <small><span>Categoria: </span>{{#each categoria}}{{nome}}{{/each}}</small><br>
+        <small><span>Data de Criação: </span>{{dateFormat data "DD/MM/YYYY , HH:mm"}}</small><br><br>
+        <a href="/posts/edit/{{_id}}">
+            <button class="edit btn btn-warning mt-2">Editar</button>
+        </a>
+        &emsp;
+        <button class="edit btn btn-danger mt-2" id="{{_id}}"
+            onclick="opcao('{{_id}}');">Apagar</button>
+        &emsp;
+        <div class="perg {{_id}}">
+            <a href="/posts/del/{{_id}}">
+                <button class="edit btn btn-danger mt-2">Confirma?</button>
+            </a>&emsp;
+            <button class="edit volt btn btn-success" onclick="cancela('{{_id}}');">Cancelar</button>
+        </div>
+    </div>
+</div>
+{{/if}}
+{{/each}}
+{{/each}}

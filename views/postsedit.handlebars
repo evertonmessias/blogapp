@@ -1,0 +1,40 @@
+<h2>Editar Posts</h2>
+{{#if msgerro}}
+<div class="alert alert-danger">{{msgerro}}</div>
+{{/if}}
+{{#if msgok}}
+<div class="alert alert-success">{{msgok}}</div>
+{{/if}}
+<div class="card">
+    <div class="card-body">
+        {{#each tudo}}
+        {{#if titulo}}
+        <form action="/posts/edit" method="POST">
+            <input type="hidden" id="id" name="id" value="{{_id}}">
+            <input type="text" id="titulo" name="titulo" value="{{titulo}}" class="form-control" required><br>
+            <input type="text" id="slug" name="slug" value="{{slug}}" class="form-control" required><br>
+            <input type="text" id="descricao" name="descricao" value="{{descricao}}" class="form-control" required><br>
+            <textarea id="conteudo" name="conteudo" rows="5" class="form-control" required>{{conteudo}}</textarea><br>
+            <select id="categoria" name="categoria" class="form-control" required>
+                <!-- Opção padrão -->
+                {{#each categoria}}
+                {{#if nome}}
+                <option value="{{_id}}">{{nome}}</option>
+                {{/if}}
+                {{/each}}
+        {{/if}}
+        {{/each}}
+                <!-- Outras opções -->
+                {{#each tcateg as |campo|}}
+                {{#each campo}}
+                {{#if nome}}
+                <option class="item" value="{{_id}}">{{nome}}</option>
+                {{/if}}
+                {{/each}}
+                {{/each}}
+            </select>
+            <br>
+            <button class="btn btn-warning" type="submit">Editar</button><br>
+        </form>
+    </div>
+</div>

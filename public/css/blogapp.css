@@ -1,0 +1,95 @@
+body {
+    background-color: #eee;
+}
+
+content, img.home, table {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+}
+
+nav {
+    z-index: 100;
+    position: fixed;
+    padding: 5px;
+    background-color: #606060;
+    width: 100%;
+    height: 50px;
+}
+
+ul.nav {
+    margin-left: 40px;
+}
+
+ul.nav li {
+    margin-left: 3px;
+}
+
+ul.nav li a {
+    color: #fff;
+}
+
+ul.nav li a:hover {
+    background-color: #007AF0;
+}
+
+h1.sitename {
+    margin-top: -47px;
+    margin-right: 40px;
+    text-align: right;
+}
+
+h1.sitename a {
+    text-decoration: none;
+}
+
+h1.sitename a:hover {
+    color: #fff;
+}
+
+content {
+    padding: 20px;
+    padding-top: 80px;
+    background-color: #fff;
+    width: 1080px;
+    min-height: 680px;
+}
+
+img.home {
+    float: left;    
+    width: 300px;
+    margin-right: 100px;
+}
+
+span {
+    font-weight: bold;
+}
+
+button.edit {
+    padding-top: 2px;
+    height: 30px;
+}
+button.login {
+    margin-right: 20px;
+    width: 100px;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.perg {
+    display: none;
+    margin-left: 190px;
+    margin-top: -38px;
+    margin-bottom: -4px;
+    width: 220px;
+    height: 42px;
+}
+.volt {
+    margin-top: 8px;
+}
+select#categoria{
+    color:#707070;
+}
+.item{color: #505050;}

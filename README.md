@@ -1,2 +1,2 @@
 # blogapp
-Sitema BlogApp em NodeJS
+Projeto Blog em NodeJS

@@ -1,0 +1,36 @@
+<h2>Categorias:</h2>
+{{#if msgerro}}
+<div class="alert alert-danger">{{msgerro}}</div>
+{{/if}}
+{{#if msgok}}
+<div class="alert alert-success">{{msgok}}</div>
+{{/if}}
+<hr>
+<a href="/categorias/add"><button class="btn btn-success">Nova Categoria</button></a>
+<br>
+{{#each tudo as |campo|}}
+{{#each campo}}
+{{#if nome}}
+<div class="card mt-4">
+    <div class="card-body">
+        <h4>{{nome}}</h4>
+        <small><span>Slug: </span>{{slug}}</small><br>
+        <small><span>Data de Criação: </span>{{dateFormat data "DD/MM/YYYY , HH:mm"}}</small><br><br>
+        <a href="/categorias/edit/{{_id}}">
+            <button class="edit btn btn-warning mt-2">Editar</button>
+        </a>
+        &emsp;
+        <button class="edit btn btn-danger mt-2" id="{{_id}}"
+            onclick="opcao('{{_id}}');">Apagar</button>
+        &emsp;
+        <div class="perg {{_id}}">
+            <a href="/categorias/del/{{_id}}">
+                <button class="edit btn btn-danger mt-2">Confirma?</button>
+            </a>&emsp;
+            <button class="edit volt btn btn-success" onclick="cancela('{{_id}}');">Cancelar</button>
+        </div>
+    </div>
+</div>
+{{/if}}
+{{/each}}
+{{/each}}
