@@ -6,13 +6,20 @@ require("../models/models");
 const categoria = mongoose.model("categorias");
 const posts = mongoose.model("posts");
 const usuarios = mongoose.model("usuarios");
+var logado = false;
+var admin = false;
+var usuariologado = "";
 
-router.get('/', (req, res) => {
-    res.render("index");
+router.get('/', (req, res) => {    
+    res.render("index", { logado: logado, usuariologado: usuariologado });
 });
 
 router.get('/alert', (req, res) => {
     res.render("alert");
+});
+
+router.get('/logout', (req,res)=>{
+    res.render("index",{logado: false,admin:false,usuariologado:""});
 });
 
 //usuario
@@ -30,7 +37,11 @@ router.post("/login/in", (req, res) => {
         if (user) {
             var senha = md5(req.body.senha);
             if (user.senha == senha) {
-                console.log(`LOGADO: nome: ${user.nome} , senha: ${req.body.senha} , admin: ${user.admin}`);
+                usuariologado = user.nome;
+                logado = true;
+                if(user.admin){
+                    admin = true;
+                }
                 res.redirect("/");
             } else {
                 console.log("Senha Inválida!!!");
@@ -42,9 +53,6 @@ router.post("/login/in", (req, res) => {
         }
     })
 })
-
-
-
 
 //inserir usuario
 router.post("/usuario/novo", (req, res) => {
@@ -75,14 +83,14 @@ router.post("/usuario/novo", (req, res) => {
 //listar categorias
 router.get("/categorias", (req, res) => {
     categoria.find((erro, tudo) => {
-        res.render("categorias", { tudo: tudo });
+        res.render("categorias", { tudo: tudo, logado: logado, admin: admin });
     });
 });
 
 //listar posts
 router.get("/posts", (req, res) => {
     posts.find((erro, tudo) => {
-        res.render("posts", { tudo: tudo });
+        res.render("posts", { tudo: tudo, logado: logado, admin: admin });
     }).populate("categoria").sort({ data: "desc" })
 });
 

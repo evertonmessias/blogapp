@@ -6,7 +6,10 @@
 <div class="alert alert-success">{{msgok}}</div>
 {{/if}}
 <hr>
+{{#if logado}}
+{{#if admin}}
 <a href="/categorias/add"><button class="btn btn-success">Nova Categoria</button></a>
+{{/if}}
 <br>
 {{#each tudo as |campo|}}
 {{#each campo}}
@@ -16,6 +19,7 @@
         <h4>{{nome}}</h4>
         <small><span>Slug: </span>{{slug}}</small><br>
         <small><span>Data de Criação: </span>{{dateFormat data "DD/MM/YYYY , HH:mm"}}</small><br><br>
+        {{#if admin}}
         <a href="/categorias/edit/{{_id}}">
             <button class="edit btn btn-warning mt-2">Editar</button>
         </a>
@@ -28,9 +32,11 @@
                 <button class="edit btn btn-danger mt-2">Confirma?</button>
             </a>&emsp;
             <button class="edit volt btn btn-success" onclick="cancela('{{_id}}');">Cancelar</button>
+        {{/if}}
         </div>
     </div>
 </div>
 {{/if}}
 {{/each}}
 {{/each}}
+{{/if}}

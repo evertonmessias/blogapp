@@ -4,6 +4,11 @@
     <p class="lead">Este é um simples sistema para publicação de Postagens.</p>
     <br>
     <hr class="my-4">
-    <p>Para criar Posts e/ou Categorias, por favor, faça o Login abaixo:</p>
-    <a class="btn btn-primary btn-lg" href="/login" role="button">Login</a>
+    {{#if logado}}
+    <p>Bem vindo <b>{{usuariologado}}</b></p>
+    <a class="btn btn-warning" href="/logout" role="button">Logout</a>
+    {{else}}
+    <p>Para criar Posts e/ou Categorias, por favor, faça o Login abaixo:</p>    
+    <a class="btn btn-success" href="/login" role="button">Login</a>
+    {{/if}}
 </div>
