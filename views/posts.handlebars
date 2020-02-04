@@ -21,8 +21,7 @@
         <small><span>Slug: </span>{{slug}}</small><br>
         <small><span>Conteúdo: </span>{{conteudo}}</small><br>
         <small><span>Categoria: </span>{{#each categoria}}{{nome}}{{/each}}</small><br>
-        <small><span>Data de Criação: </span>{{dateFormat data "DD/MM/YYYY , HH:mm"}}</small><br><br>
-        {{#if admin}}
+        <small><span>Data de Criação: </span>{{dateFormat data "DD/MM/YYYY , HH:mm"}}</small><br><br>        
         <a href="/posts/edit/{{_id}}">
             <button class="edit btn btn-warning mt-2">Editar</button>
         </a>
@@ -34,8 +33,7 @@
             <a href="/posts/del/{{_id}}">
                 <button class="edit btn btn-danger mt-2">Confirma?</button>
             </a>&emsp;
-            <button class="edit volt btn btn-success" onclick="cancela('{{_id}}');">Cancelar</button>
-        {{/if}}
+            <button class="edit volt btn btn-success" onclick="cancela('{{_id}}');">Cancelar</button>        
         </div>
     </div>
 </div>
