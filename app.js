@@ -7,7 +7,8 @@ const mongoose = require("mongoose");
 const app = express();
 const routes = require("./routes/routes");
 const path = require("path");
-const PORT = 8080;
+require('./.env');
+
 
 //Configurações
 
@@ -19,7 +20,7 @@ app.engine('handlebars', handlebars({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 //Mongodb
-mongoose.connect("mongodb+srv://root:efc2505xx@cluster0-qjwu2.gcp.mongodb.net/test?retryWrites=true&w=majority")
+mongoose.connect(CONNECT)
     .then(() => {
         console.log("*** CONECTADO OK ***");
     })

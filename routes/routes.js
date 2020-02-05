@@ -6,20 +6,20 @@ require("../models/models");
 const categoria = mongoose.model("categorias");
 const posts = mongoose.model("posts");
 const usuarios = mongoose.model("usuarios");
-var logado = false;
-var admin = false;
-var usuariologado = "";
 
-router.get('/', (req, res) => {    
-    res.render("index", { logado: logado, usuariologado: usuariologado });
+router.get('/', (req, res) => {
+    res.render("index", { LOGADO: LOGADO, USUARIOLOGADO: USUARIOLOGADO });
 });
 
 router.get('/alert', (req, res) => {
     res.render("alert");
 });
 
-router.get('/logout', (req,res)=>{
-    res.render("index",{logado: false,admin:false,usuariologado:""});
+router.get('/logout', (req, res) => {
+    LOGADO = false;
+    ADMIN = false;
+    USUARIOLOGADO = "";
+    res.render("index", { LOGADO: LOGADO, ADMIN: ADMIN, USUARIOLOGADO: USUARIOLOGADO });
 });
 
 //usuario
@@ -37,10 +37,10 @@ router.post("/login/in", (req, res) => {
         if (user) {
             var senha = md5(req.body.senha);
             if (user.senha == senha) {
-                usuariologado = user.nome;
-                logado = true;
-                if(user.admin){
-                    admin = true;
+                USUARIOLOGADO = user.nome;
+                LOGADO = true;
+                if (user.admin) {
+                    ADMIN = true;
                 }
                 res.redirect("/");
             } else {
@@ -83,14 +83,32 @@ router.post("/usuario/novo", (req, res) => {
 //listar categorias
 router.get("/categorias", (req, res) => {
     categoria.find((erro, tudo) => {
-        res.render("categorias", { tudo: tudo, logado: logado, admin: admin });
+        var n=0;
+        var campos = [];
+        tudo.forEach(function(valor){   
+            campos.push(valor);            
+        });
+        do{   
+        campos[n].__v = ADMIN;        
+        n++;
+        }while(campos[n]);
+        res.render("categorias", { campos: campos, LOGADO: LOGADO, ADMIN: ADMIN});
     });
 });
 
 //listar posts
 router.get("/posts", (req, res) => {
     posts.find((erro, tudo) => {
-        res.render("posts", { tudo: tudo, logado: logado, admin: admin });
+        var n=0;
+        var campos = [];
+        tudo.forEach(function(valor){   
+            campos.push(valor);            
+        });
+        do{   
+        campos[n].__v = ADMIN;        
+        n++;
+        }while(campos[n]);
+        res.render("posts", { campos: campos, LOGADO: LOGADO, ADMIN: ADMIN });
     }).populate("categoria").sort({ data: "desc" })
 });
 
