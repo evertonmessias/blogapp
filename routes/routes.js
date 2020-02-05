@@ -232,9 +232,9 @@ router.post("/posts/edit", (req, res) => {
 });
 
 //apagar categoria
-router.get("/categorias/del/:id", (req, res) => {
-    if(ADMIN){
+router.get("/categorias/del/:id", (req, res) => {    
     var id = req.params.id;
+    if(ADMIN){
     categoria.deleteOne({ _id: id }, (erro, tudo) => {
         if (!erro) {
             res.render("alert", { msgok: "Categoria Apagada com sucesso!", link: "/categorias" });
@@ -242,23 +242,25 @@ router.get("/categorias/del/:id", (req, res) => {
             res.render("alert", { msgerro: "Categoria não encontrada!", link: "/categorias" });
         }
     });
-    }res.render("alert", { msgerro: "Você não tem permissão" });
+    }else{
+        res.render("alert", { msgerro: "Você não tem permissão!" });
+    }    
 });
 
 //apagar post
-router.get("/posts/del/:id", (req, res) => {
-    if(ADMIN){
+router.get("/posts/del/:id", (req, res) => {        
     var id = req.params.id;
-    posts.deleteOne({ _id: id }, (erro, tudo) => {
+    if(ADMIN){
+    posts.deleteOne({ _id: id }, (erro, tudo) => {        
         if (!erro) {
             res.render("alert", { msgok: "Post Apagado com sucesso!", link: "/posts" });
         } else {
             res.render("alert", { msgerro: "Post não encontrado!", link: "/posts" });
         }
     });
-    }res.render("alert", { msgerro: "Você não tem permissão" });
-
+}else{
+    res.render("alert", { msgerro: "Você não tem permissão!", link: "/posts" });
+} 
 });
-
 // *****************************************
 module.exports = router;
