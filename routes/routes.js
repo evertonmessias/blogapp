@@ -114,7 +114,7 @@ router.get("/posts", (req, res) => {
 
 //inserir categoria
 router.get("/categorias/add", (req, res) => {
-    res.render("categoriasadd");
+    res.render("categoriasadd", { ADMIN: ADMIN });
 });
 router.post("/categorias/nova", (req, res) => {
     if (req.body.nome && req.body.slug) {
@@ -137,7 +137,7 @@ router.post("/categorias/nova", (req, res) => {
 //inserir posts
 router.get("/posts/add", (req, res) => {
     categoria.find((erro, tudo) => {
-        res.render("postsadd", { tudo: tudo });
+        res.render("postsadd", { tudo: tudo, ADMIN: ADMIN });
     });
 });
 router.post("/posts/novo", (req, res) => {
@@ -167,7 +167,7 @@ router.get("/categorias/edit/:id", (req, res) => {
     var id = req.params.id;
     categoria.findOne({ _id: id }, (erro, tudo) => {
         if (!erro) {
-            res.render("categoriasedit", { tudo: tudo });
+            res.render("categoriasedit", { tudo: tudo, ADMIN: ADMIN });
         } else {
             res.render("alert", { msgerro: "Categoria não encontrada!", link: "/categorias" });
         }
@@ -201,7 +201,7 @@ router.get("/posts/edit/:id", (req, res) => {
     var id = req.params.id;
     posts.findOne({ _id: id }, (erro, tudo) => { // erros não tratados com if
         categoria.find((erro, tcateg) => {
-            res.render("postsedit", { tudo: tudo, tcateg: tcateg });
+            res.render("postsedit", { tudo: tudo, tcateg: tcateg, ADMIN: ADMIN });
         })
     }).populate("categoria");
 });

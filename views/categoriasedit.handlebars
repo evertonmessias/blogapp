@@ -1,3 +1,4 @@
+{{#if ADMIN}}
 <h2>Editar Categoria</h2>
 {{#if msgerro}}
 <div class="alert alert-danger">{{msgerro}}</div>
@@ -19,3 +20,6 @@
         {{/each}}
     </div>
 </div>
+{{else}}
+<h2>Você não tem permissão para Adicionar</h2>
+{{/if}}
