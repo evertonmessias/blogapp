@@ -233,6 +233,7 @@ router.post("/posts/edit", (req, res) => {
 
 //apagar categoria
 router.get("/categorias/del/:id", (req, res) => {
+    if(ADMIN){
     var id = req.params.id;
     categoria.deleteOne({ _id: id }, (erro, tudo) => {
         if (!erro) {
@@ -241,10 +242,12 @@ router.get("/categorias/del/:id", (req, res) => {
             res.render("alert", { msgerro: "Categoria não encontrada!", link: "/categorias" });
         }
     });
+    }res.render("alert", { msgerro: "Você não tem permissão" });
 });
 
 //apagar post
 router.get("/posts/del/:id", (req, res) => {
+    if(ADMIN){
     var id = req.params.id;
     posts.deleteOne({ _id: id }, (erro, tudo) => {
         if (!erro) {
@@ -253,6 +256,8 @@ router.get("/posts/del/:id", (req, res) => {
             res.render("alert", { msgerro: "Post não encontrado!", link: "/posts" });
         }
     });
+    }res.render("alert", { msgerro: "Você não tem permissão" });
+
 });
 
 // *****************************************
