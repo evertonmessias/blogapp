@@ -6,9 +6,12 @@ require("../models/models");
 const categoria = mongoose.model("categorias");
 const posts = mongoose.model("posts");
 const usuarios = mongoose.model("usuarios");
+LOGADO = process.env.LOGADO;
+ADMIN = process.env.ADMIN;
+USUARIOLOGADO = process.env.USUARIOLOGADO;
 
 router.get('/', (req, res) => {
-    res.render("index", { LOGADO: LOGADO, USUARIOLOGADO: USUARIOLOGADO });
+    res.render("index", { LOGADO: LOGADO, ADMIN: ADMIN, USUARIOLOGADO: USUARIOLOGADO });
 });
 
 router.get('/alert', (req, res) => {

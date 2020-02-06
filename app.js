@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const app = express();
 const routes = require("./routes/routes");
 const path = require("path");
-require('./.env');
+require('dotenv/config');
 
 
 //Configurações
@@ -20,7 +20,7 @@ app.engine('handlebars', handlebars({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 //Mongodb
-mongoose.connect(CONNECT)
+mongoose.connect(process.env.CONNECT)
     .then(() => {
         console.log("*** CONECTADO OK ***");
     })
@@ -38,6 +38,6 @@ app.use('/', routes);
 Handlebars.registerHelper('dateFormat', require('handlebars-dateformat'));
 
 //Servidor
-app.listen(PORT, () => {
-    console.log("SERVIDOR RODANDO NA PORTA:" + PORT);
+app.listen(process.env.PORT, () => {
+    console.log("SERVIDOR RODANDO NA PORTA:" + process.env.PORT);
 });

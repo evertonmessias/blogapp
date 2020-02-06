@@ -5,7 +5,7 @@
     <br>
     <hr class="my-4">
     {{#if LOGADO}}
-    <p>Bem vindo <b>{{USUARIOLOGADO}}</b></p>
+    <p>Bem vindo <b>{{USUARIOLOGADO}}</b> {{#if ADMIN}}(admin){{/if}}</p>
     <a class="btn btn-warning" href="/logout" role="button">Logout</a>
     {{else}}
     <p>Para criar Posts e/ou Categorias, por favor, faça o Login abaixo:</p>    
