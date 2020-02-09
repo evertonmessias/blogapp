@@ -15,6 +15,7 @@ require('dotenv/config');
 //Body Parser
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
+
 //Handlebars
 app.engine('handlebars', handlebars({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
