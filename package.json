@@ -9,7 +9,7 @@
     "handlebars-dateformat": "^1.1.1",
     "md5": "^2.2.1",
     "mongoose": "^5.8.9",
-    "nodemon": "^2.0.1"
+    "nodemon": "^2.0.22"
   },
   "scripts": {
     "start": "nodemon app.js"
